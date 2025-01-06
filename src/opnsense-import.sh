@@ -31,7 +31,7 @@ opnsense_load_disks
 [ -z "${OPNSENSE_SDISKS}${OPNSENSE_SPOOLS}" ] && opnsense_fatal "Import Configuration" "No suitable disks found in the system"
 
 exec 3>&1
-DISK=`echo ${OPNSENSE_SDISKS} ${OPNSENSE_SPOOLS} | xargs dialog --backtitle "OPNsense Installer" \
+DISK=`echo ${OPNSENSE_SDISKS} ${OPNSENSE_SPOOLS} | xargs dialog --backtitle "Marge Installer" \
 	--title "Import Configuration" --cancel-label "Cancel" \
 	--menu "Please select a disk to continue." \
 	0 0 0 2>&1 1>&3` || exit 1

@@ -89,13 +89,13 @@ opnsense_load_disks()
 
 opnsense_info()
 {
-	dialog --backtitle "OPNsense Installer" --title "${1}" \
+	dialog --backtitle "Marge Installer" --title "${1}" \
 	    --msgbox "${2}" 0 0
 }
 
 opnsense_fatal()
 {
-	dialog --backtitle "OPNsense Installer" --title "${1}" \
+	dialog --backtitle "Marge Installer" --title "${1}" \
 	    --ok-label "Cancel" --msgbox "${2}" 0 0
 	exit 1
 }

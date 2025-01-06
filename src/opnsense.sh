@@ -41,7 +41,7 @@ hline_arrows_tab_enter="Press arrows, TAB or ENTER"
 hline_arrows_tab_space_enter="Press arrows, TAB, SPACE or ENTER"
 msg_abort="Abort"
 msg_exit="Exit"
-msg_freebsd_installer="OPNsense Installer"
+msg_freebsd_installer="Marge Installer"
 msg_gpt_active_fix="Your hardware is known to have issues booting in CSM/Legacy/BIOS mode from GPT partitions that are not set active. Would you like the installer to apply this workaround for you?"
 msg_lenovo_fix="Your model of Lenovo is known to have a BIOS bug that prevents it booting from GPT partitions without UEFI. Would you like the installer to apply a workaround for you?"
 msg_an_installation_step_has_been_aborted="An installation step has been aborted. Would you like\nto restart the installation or exit the installer?"
@@ -265,7 +265,7 @@ ${CHOICESZFS}\"Install (UFS)\" \"UFS GPT/UEFI Hybrid\" \
 while :; do
 
 exec 3>&1
-CHOICE=`echo ${CHOICES} | xargs dialog --backtitle "OPNsense Installer" \
+CHOICE=`echo ${CHOICES} | xargs dialog --backtitle "" \
 	--title "${PRODUCT_NAME} ${PRODUCT_VERSION}" --cancel-label "Exit" \
 	--menu "Choose one of the following tasks to perform." \
 	0 0 0 2>&1 1>&3` || exit 1
@@ -286,7 +286,7 @@ case "${CHOICE}" in
 	;;
 "Other Modes >>")
 	exec 3>&1
-	PARTMODE=`echo ${PMODES} | xargs dialog --backtitle "OPNsense Installer" \
+	PARTMODE=`echo ${PMODES} | xargs dialog --backtitle "Marge Installer" \
 	--title "Select Task" --cancel-label "Back" \
 	--menu "Choose one of the following tasks to perform." \
 	0 0 0 2>&1 1>&3` || PARTMODE=Exit
@@ -345,7 +345,7 @@ trap true SIGINT	# This section is optional
 
 finalconfig() {
 	exec 3>&1
-	REVISIT=$(dialog --backtitle "OPNsense Installer" \
+	REVISIT=$(dialog --backtitle "Marge Installer" \
 	    --title "Final Configuration" --no-cancel --menu \
 	    "Setup of your ${PRODUCT_NAME} system is nearly complete." 0 0 0 \
 		"Root Password" "Change root password" \

@@ -28,7 +28,7 @@
 
 fatal()
 {
-	dialog --backtitle "OPNsense Installer" --title "UFS Configuration" \
+	dialog --backtitle "Marge Installer" --title "UFS Configuration" \
 	    --ok-label "Cancel" --msgbox "${1}" 0 0
 	exit 1
 }
@@ -38,7 +38,7 @@ MEM=$((MEM / 1024 / 1024))
 MEM_MIN=$((2 * 1000)) # a little lower to account for missing pages
 
 if [ ${MEM} -lt ${MEM_MIN} ]; then
-	if ! dialog --backtitle "OPNsense Installer" --title "UFS Configuration" \
+	if ! dialog --backtitle "Marge Installer" --title "UFS Configuration" \
 	    --yes-label "Proceed anyway" --no-label "Cancel" --yesno \
 	    "The installer detected only ${MEM}MB of RAM. Since\n
 this is a live image, copying the full file system\n
@@ -53,7 +53,7 @@ opnsense_load_disks
 [ -z "${OPNSENSE_SDISKS}" ] && fatal "No suitable disks found in the system"
 
 exec 3>&1
-DISK=`echo ${OPNSENSE_SDISKS} | xargs dialog --backtitle "OPNsense Installer" \
+DISK=`echo ${OPNSENSE_SDISKS} | xargs dialog --backtitle "Marge Installer" \
 	--title "UFS Configuration" --cancel-label "Cancel" \
 	--menu "Please select a disk to continue." \
 	0 0 0 2>&1 1>&3` || exit 1
@@ -69,7 +69,7 @@ SED_SWAP="-e s:/${DISK}p4:/gpt/swapfs:"
 
 if [ ${SIZE} -lt ${SIZE_SWAPMIN} ]; then
 	SIZE_SWAP=0
-elif ! dialog --backtitle "OPNsense Installer" --title "UFS Configuration" --yesno \
+elif ! dialog --backtitle "Marge Installer" --title "UFS Configuration" --yesno \
     "Continue with a recommended swap partition of size $((SIZE_SWAP / 1024 / 1024 / 1024))GB?" 6 40; then
 	SIZE_SWAP=0
 fi
@@ -81,7 +81,7 @@ fi
 
 SIZE_ROOT=$((SIZE - SIZE_EFI - SIZE_BOOT - SIZE_SWAP))
 
-if ! dialog --backtitle "OPNsense Installer" --title "UFS Configuration" \
+if ! dialog --backtitle "Marge Installer" --title "UFS Configuration" \
     --yes-label YES --no-label NO --default-button no --yesno \
     "Last Chance! Are you sure you want to destroy the current contents of the following disks:\n\n    ${DISK}\n\n" 0 0; then
 	exit 1
